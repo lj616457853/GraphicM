@@ -1,0 +1,195 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						3
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"build" : "src",
+					"childIndexes" : 
+					[
+						2
+					],
+					"jsonFile" : "directory-src-Debug-c94b7c2814d5a21df52c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "src/tests",
+					"jsonFile" : "directory-src.tests-Debug-5754f03761777cfcdbde.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/tests",
+					"targetIndexes" : 
+					[
+						2,
+						4,
+						5,
+						6,
+						7,
+						9
+					]
+				},
+				{
+					"build" : "baseh/vk",
+					"jsonFile" : "directory-baseh.vk-Debug-88c7c774d1ef5d7bb92d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "baseh/vk",
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					],
+					"name" : "OPPENDEMO",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "GLAD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GLAD-Debug-5dca67a0870b713bc95f.json",
+					"name" : "GLAD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "STB_IMAGE::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-STB_IMAGE-Debug-b3e5bc60b78dd9b9921e.json",
+					"name" : "STB_IMAGE",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "aig::@08b4cb1648a15a99be29",
+					"jsonFile" : "target-aig-Debug-0bcff342d9d6eb3c5bb8.json",
+					"name" : "aig",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "base::@141c772b5e4c65e51ca0",
+					"jsonFile" : "target-base-Debug-eb7534d8e081a91cc050.json",
+					"name" : "base",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "bloom::@08b4cb1648a15a99be29",
+					"jsonFile" : "target-bloom-Debug-edc1e6bb3bd8a9cffb48.json",
+					"name" : "bloom",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "colors::@08b4cb1648a15a99be29",
+					"jsonFile" : "target-colors-Debug-8f55a8e6a973e6fb6b18.json",
+					"name" : "colors",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "core::@08b4cb1648a15a99be29",
+					"jsonFile" : "target-core-Debug-5d48aea4fc01b4ca99af.json",
+					"name" : "core",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "enginet::@08b4cb1648a15a99be29",
+					"jsonFile" : "target-enginet-Debug-331edd8cbe1f547171d8.json",
+					"name" : "enginet",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "pjnamej::@145eef247bfb46b6828c",
+					"jsonFile" : "target-pjnamej-Debug-64a458bb3cde425200bb.json",
+					"name" : "pjnamej",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "skima::@08b4cb1648a15a99be29",
+					"jsonFile" : "target-skima-Debug-2cd1c3f449d80e6af690.json",
+					"name" : "skima",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/C-work/OPPENDEMO/out/build/x64-debug",
+		"source" : "E:/C-work/OPPENDEMO"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

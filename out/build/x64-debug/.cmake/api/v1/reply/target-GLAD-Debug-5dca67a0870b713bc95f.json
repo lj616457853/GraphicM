@@ -1,0 +1,244 @@
+{
+	"archive" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:x64",
+				"role" : "flags"
+			}
+		]
+	},
+	"artifacts" : 
+	[
+		{
+			"path" : "GLAD.lib"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"add_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 67,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 94,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 35,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 36,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 37,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 38,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 39,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 40,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 41,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 43,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 44,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 45,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 46,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 47,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 49,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 64,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "_CRT_SECURE_NO_WARNINGS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "E:/C-work/OPPENDEMO/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "E:/C-work/OPPENDEMO/include/assimp"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "E:/C-work/OPPENDEMO/include/glad"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "E:/C-work/OPPENDEMO/include/GLFW"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "E:/C-work/OPPENDEMO/include/glm"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "E:/C-work/OPPENDEMO/include/KHR"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "E:/C-work/OPPENDEMO/include/learnopengl"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "E:/C-work/OPPENDEMO/include/imgui"
+				},
+				{
+					"backtrace" : 11,
+					"path" : "E:/C-work/OPPENDEMO/include/ktx"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "E:/C-work/OPPENDEMO/include/tinygltf"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "E:/C-work/OPPENDEMO/include/ktx/include"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "E:/C-work/OPPENDEMO/include/ktx/other_include"
+				},
+				{
+					"backtrace" : 15,
+					"path" : "E:/C-work/OPPENDEMO/baseh/vk"
+				},
+				{
+					"backtrace" : 16,
+					"path" : "E:/C-work/OPPENDEMO/out/build/x64-debug/config"
+				}
+			],
+			"language" : "C",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"id" : "GLAD::@6890427a1f51a3e7e1df",
+	"name" : "GLAD",
+	"nameOnDisk" : "GLAD.lib",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "lib/glad.c",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

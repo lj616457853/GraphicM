@@ -1,0 +1,111 @@
+
+
+
+function(compile_demo DEMO_NAME)
+	SET(EXAMPLE_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/${DEMO_NAME})
+	message(STATUS "complie opengl project file for demos in ${EXAMPLE_FOLDER}")
+	message(STATUS "BASE_HEADERS: ${BASE_HEADERS}")
+	file(GLOB SOURCE *.cpp ${BASE_HEADERS} ${EXAMPLE_FOLDER}/*.cpp)
+	SET(MAIN_CPP ${EXAMPLE_FOLDER}/${DEMO_NAME}.cpp)
+	
+	if(EXISTS ${EXAMPLE_FOLDER}/main.cpp)
+		SET(MAIN_CPP ${EXAMPLE_FOLDER}/main.cpp)
+	ENDIF()
+	if(EXISTS ${EXAMPLE_FOLDER}/${DEMO_NAME}.h)
+		SET(MAIN_HEADER ${EXAMPLE_FOLDER}/${DEMO_NAME}.h)
+	ENDIF()
+	IF(${DEMO_NAME} STREQUAL "imgui")
+		file(GLOB ADD_SOURCE "${CMAKE_SOURCE_DIR}/include/imgui/*.cpp")
+		SET(SOURCE ${SOURCE} ${ADD_SOURCE})
+	ENDIF()
+
+	# wayland requires additional source files
+	IF(USE_WAYLAND_WSI)
+		SET(SOURCE ${SOURCE} ${CMAKE_BINARY_DIR}/xdg-shell-client-protocol.h ${CMAKE_BINARY_DIR}/xdg-shell-protocol.c)
+	ENDIF()
+	message(STATUS "DEMO:${DEMO_NAME},MAIN CPP: ${MAIN_CPP}")
+	set(GLSL_DIR ${SHADER_DIR_BASE}/glsl)
+	set(HLSL_DIR ${SHADER_DIR_BASE}/hlsl)
+	file(GLOB SHADERS_GL 
+		${GLSL_DIR}/*
+		${GLSL_DIR}/${DEMO_NAME}/*
+		
+	)
+	file(GLOB SHADERS_HL 
+		${HLSL_DIR}/*
+		${HLSL_DIR}/${DEMO_NAME}/*
+	)
+
+	source_group("Shaders\\GLSL" FILES ${SHADERS_GL})
+	source_group("Shaders\\HLSL" FILES ${SHADERS_HL})
+	if(WIN32)
+		message(STATUS "GLLIBS : ${GLLIBS}")
+		add_executable(${DEMO_NAME}   ${MAIN_CPP} ${SOURCE} ${BASE_SRC} ${MAIN_HEADER} ${SHADERS_GL} ${SHADERS_HL}  )
+		target_link_libraries(${DEMO_NAME} base  ${GLLIBS}   ${Vulkan_LIBRARY} ${WINLIBS})
+		#set_target_properties(${DEMO_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
+	else(WIN32)
+		add_executable(${DEMO_NAME} ${MAIN_CPP} ${SOURCE} ${MAIN_HEADER} ${SHADERS_GLSL} ${SHADERS_HLSL})
+		target_link_libraries(${DEMO_NAME}  ${GLLIBS} )
+	endif(WIN32)
+	set_target_properties(${DEMO_NAME} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+	if(OpenMP_CXX_FOUND)
+		target_compile_options(${DEMO_NAME} PRIVATE ${OpenMP_CXX_FLAGS})
+		IF(${VKEXAMPLE} STREQUAL "texture3d")
+			if(OpenMP_CXX_FOUND)
+    			target_link_libraries(${DEMO_NAME} OpenMP::OpenMP_CXX)
+			endif()	
+		endif()
+	endif()
+	
+	# setting C++
+	 if(MSVC)
+		target_compile_options(${DEMO_NAME} PRIVATE /std:c++17 /MP)
+        target_link_options(${DEMO_NAME} PUBLIC /ignore:4099)
+    endif(MSVC)
+
+	set(replaced "/")
+	string(REPLACE "src" "bin/src" replaced ${CMAKE_CURRENT_SOURCE_DIR}/${DEMO_NAME})
+	if(WIN32)
+        set_target_properties(${DEMO_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${replaced}")
+        set_target_properties(${DEMO_NAME} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${replaced}/Debug")
+    elseif(UNIX AND NOT APPLE)
+        set_target_properties(${DEMO_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${replaced}")
+    elseif(APPLE)
+        set_target_properties(${DEMO_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${replaced}")
+        set_target_properties(${DEMO_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${replaced}")
+        set_target_properties(${DEMO_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE "${replaced}")
+    endif(WIN32)
+	file(GLOB DLLS "${CMAKE_SOURCE_DIR}/dlls/*.dll")
+	message(STATUS "DLLS:${DLLS}")
+	add_custom_command(TARGET ${DEMO_NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLLS}  "${replaced}")
+	#foreach(GLSR  ${SHADERS_GL})
+		#add_custom_command(TARGET ${DEMO_NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${GLSR}  "${replaced}")
+	#endforeach(GLSR)
+	#foreach(HLSR  ${SHADERS_GL})
+		#add_custom_command(TARGET ${DEMO_NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${HLSR}  "${replaced}")
+	#endforeach(HLSR)
+	#add_custom_command(TARGET ${DEMO_NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SHADERS_GL}  "${replaced}")
+	#add_custom_command(TARGET ${DEMO_NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SHADERS_HL}   "${replaced}")	
+
+
+	
+endfunction(compile_demo)
+
+
+function(compiler_demos)
+	foreach(DEMO ${DEMOS_LIST})
+		compile_demo(${DEMO})
+	endforeach(DEMO)
+endfunction(compiler_demos)
+
+
+
+set(DEMOS_LIST
+	colors
+	bloom
+	core
+	skima
+	aig
+	enginet
+)
+compiler_demos()

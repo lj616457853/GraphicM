@@ -1,0 +1,125 @@
+MESSAGE("Now Cmake Dir:${CMAKE_CURRENT_SOURCE_DIR}")
+
+MESSAGE("sub dir lists:")
+function(buildExample EXAMPLE_NAME)
+			MESSAGE("dir: ${EXAMPLE_NAME}")
+			#add_subdirectory(${EXAMPLE_NAME})
+endfunction(buildExample)
+
+set(moduleso "")
+set(modulehd "")
+set(reportdir "")
+function(buildExamples)
+	
+	foreach(EXAMPLE ${EXAMPLESS})
+		#buildExample(${EXAMPLE})
+	
+	list(APPEND moduleso 
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/*.h
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/*.cpp
+
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/*.h
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/*.cpp
+
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/private/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/private/*.h
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/private/*.cpp
+		)
+
+		list(APPEND modulehd
+		
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/*.h
+
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/*.h
+
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/private/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/private/*.h
+
+		)
+		list(APPEND reportdir ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/)
+	endforeach(EXAMPLE)
+	file(GLOB moudlecp ${moduleso})
+	file(GLOB moudlehp ${modulehd})
+	message(STATUS "moudlecp :${moudlecp}")
+	message(STATUS "moudlehp :${moudlehp}")
+	message(STATUS "reportdir :${reportdir}")
+	add_library(pjnamej STATIC ${moudlecp} ${moudlehp})
+	target_link_libraries(pjnamej ${base}  ${GLLIBS}  )
+	message(STATUS "pjnamej :${pjnamej}")
+	include_directories(${reportdir})
+	link_directories(${reportdir})
+	#target_include_directories(pjname PUBLIC ${reportdir})
+	#target_link_directories(pjname PUBLIC ${reportdir})
+	target_include_directories(pjnamej PUBLIC ${reportdir})
+	#target_link_directories(pjname PUBLIC ${reportdir})
+	set(GLLIBS ${GLLIBS} pjnamej)
+endfunction(buildExamples)
+
+
+set(EXAMPLESS 
+	module/core
+	module/center
+	pj/game
+	entity/model
+	entity/resources
+	renderer/data
+	renderer/excutor
+	opengl/data
+	opengl/config
+	rhi/core
+	core/setengine
+)
+foreach(EXAMPLE ${EXAMPLESS})
+		#buildExample(${EXAMPLE})
+	
+	list(APPEND moduleso 
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/*.h
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/*.cpp
+
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/*.h
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/*.cpp
+
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/private/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/private/*.h
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/private/*.cpp
+		)
+
+		list(APPEND modulehd
+		
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/*.h
+
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/*.h
+
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/private/*.hpp
+				${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/private/*.h
+
+		)
+		list(APPEND reportdir ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}/public/)
+endforeach(EXAMPLE)
+	file(GLOB moudlecp ${moduleso})
+	file(GLOB moudlehp ${modulehd})
+	message(STATUS "moudlecp :${moudlecp}")
+	message(STATUS "moudlehp :${moudlehp}")
+	message(STATUS "reportdir :${reportdir}")
+	add_library(pjnamej  ${moudlecp} ${moudlehp})
+	target_link_libraries(pjnamej ${base}  ${GLLIBS}  )
+	include_directories(${reportdir})
+	message(STATUS "pjnamej :${pjnamej}")
+	#link_directories(${reportdir})
+	#target_include_directories(pjname PUBLIC ${reportdir})
+	#target_link_directories(pjname PUBLIC ${reportdir})
+	target_include_directories(pjnamej PUBLIC ${reportdir})
+	#target_link_directories(pjname PUBLIC ${reportdir})
+	set(GLLIBS ${GLLIBS} pjnamej)
+#buildExamples()
+
+add_subdirectory(tests)
+
